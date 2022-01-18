@@ -1,0 +1,17 @@
+---
+- name: install list of software
+  hosts: all
+  become: yes
+  vars:
+    packages:
+        - git
+        - mysql-server
+        - apache2
+        - maven
+  tasks:
+  - name: installing packages
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ packages }}"
+
